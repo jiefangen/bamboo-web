@@ -13,7 +13,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/jiefangen/bamboo-web/tree/master/bamboo-admin-web
+git clone https://github.com/jiefangen/bamboo-web.git
 
 # 进入项目目录
 cd bamboo-admin-web
