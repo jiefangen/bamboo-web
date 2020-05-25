@@ -26,7 +26,7 @@ const users = {
 export default [
   // user login
   {
-    url: '/bamboo-admin-web/user/login',
+    url: '/login',
     type: 'post',
     response: config => {
       const { username } = config.body
@@ -48,31 +48,31 @@ export default [
   },
 
   // get user info
-  {
-    url: '/bamboo-admin-web/user/info\.*',
-    type: 'get',
-    response: config => {
-      const { token } = config.query
-      const info = users[token]
+  // {
+  //   url: '/bamboo-admin-web/user/info\.*',
+  //   type: 'get',
+  //   response: config => {
+  //     const { token } = config.query
+  //     const info = users[token]
 
-      // mock error
-      if (!info) {
-        return {
-          code: 50008,
-          message: 'Login failed, unable to get user details.'
-        }
-      }
+  //     // mock error
+  //     if (!info) {
+  //       return {
+  //         code: 50008,
+  //         message: 'Login failed, unable to get user details.'
+  //       }
+  //     }
 
-      return {
-        code: 20000,
-        data: info
-      }
-    }
-  },
+  //     return {
+  //       code: 20000,
+  //       data: info
+  //     }
+  //   }
+  // },
 
   // user logout
   {
-    url: '/bamboo-admin-web/user/logout',
+    url: '/logout',
     type: 'post',
     response: _ => {
       return {
