@@ -48,29 +48,20 @@ export default [
   },
 
   // get user info
-  // {
-  //   url: '/bamboo-admin-web/user/info\.*',
-  //   type: 'get',
-  //   response: config => {
-  //     const { token } = config.query
-  //     const info = users[token]
+  {
+    url: '/system/user/info',
+    type: 'get',
+    response: config => {
+      // const { token } = config.query
+      const username = users[username]
 
-  //     // mock error
-  //     if (!info) {
-  //       return {
-  //         code: 50008,
-  //         message: 'Login failed, unable to get user details.'
-  //       }
-  //     }
+      return {
+        code: 20000,
+        data: username
+      }
+    }
+  },
 
-  //     return {
-  //       code: 20000,
-  //       data: info
-  //     }
-  //   }
-  // },
-
-  // user logout
   {
     url: '/logout',
     type: 'post',

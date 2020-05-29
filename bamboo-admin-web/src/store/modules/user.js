@@ -5,8 +5,7 @@ import { resetRouter } from '@/router'
 const getDefaultState = () => {
   return {
     token: getToken(),
-    name: '',
-    avatar: ''
+    name: ''
   }
 }
 
@@ -21,21 +20,20 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
   }
 }
 
 const actions = {
-  // system login
+
   login({ commit }, userInfo) {
     const { username, password } = userInfo
+    commit('SET_NAME', userInfo.username)
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        sessionStorage.setItem(`username`, userInfo.username)
+        setToken(data.token) // 返回的token存入Cookies中
         resolve()
       }).catch(error => {
         reject(error)
@@ -43,20 +41,10 @@ const actions = {
     })
   },
 
-  // get user info
-  getInfo({ commit, state }) {
+  getInfo({ state }) { // 获取用户详情
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo(state.name).then(response => {
         const { data } = response
-
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
-
-        const { name, avatar } = data
-
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -64,7 +52,6 @@ const actions = {
     })
   },
 
-  // system logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
@@ -78,7 +65,6 @@ const actions = {
     })
   },
 
-  // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
       removeToken() // must remove  token  first

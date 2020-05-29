@@ -16,7 +16,7 @@
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/bamboo-admin-web/">
+          <a target="_blank" href="https://github.co/jiefangen/bamboo-admin-web/">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">

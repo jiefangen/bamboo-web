@@ -7,29 +7,15 @@ import { getToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   timeout: 5000,
-  // withCredentials: true, // 跨域请求时是否需要使用凭证
-
+  withCredentials: true, // 跨域请求时是否需要使用凭证
   headers: {
     get: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      // 如果需要单点登录或者其他功能的通用请求头，可以一并配置进来
     },
     post: {
       'Content-Type': 'application/json;charset=utf-8'
     }
-  },
-
-   transformRequest: [function (data) {// 在向服务器发送请求前，序列化请求数据
-    data = JSON.stringify(data)
-    return data
-  }],
-
-  transformResponse: [function (data) {// 在传递给 then/catch 前，修改响应数据
-    if (typeof data === 'string' && data.startsWith('{')) {
-        data = JSON.parse(data)
-    }
-    return data
-  }]
+  }
 })
 
 // request interceptor
@@ -66,15 +52,15 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    if (res.code !== 2000) {
+    if (res.code !== 200 && res.code !== 20000) {
       Message({
         message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      // 50008: Illegal token; 50014: Token expired;
+      if (res.code === 50008 || res.code === 50014) {
         // to re-login
         MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
           confirmButtonText: 'Re-Login',
@@ -86,6 +72,7 @@ service.interceptors.response.use(
           })
         })
       }
+
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return res
