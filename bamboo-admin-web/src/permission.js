@@ -26,8 +26,7 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      debugger
-      const hasGetUserInfo =  sessionStorage.getItem(`username`)
+      const hasGetUserInfo = sessionStorage.getItem(`username`)
       if (hasGetUserInfo) {
         next()
       } else {

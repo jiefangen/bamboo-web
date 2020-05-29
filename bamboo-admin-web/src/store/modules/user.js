@@ -14,6 +14,7 @@ const state = getDefaultState()
 const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
+    sessionStorage.removeItem('username')
   },
   SET_TOKEN: (state, token) => {
     state.token = token
@@ -52,9 +53,9 @@ const actions = {
     })
   },
 
-  logout({ commit, state }) {
+  logout({ commit }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+      logout().then(() => {
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')

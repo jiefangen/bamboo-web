@@ -47,14 +47,11 @@ export default [
     }
   },
 
-  // get user info
   {
     url: '/system/user/info',
     type: 'get',
     response: config => {
-      // const { token } = config.query
       const username = users[username]
-
       return {
         code: 20000,
         data: username
@@ -64,7 +61,7 @@ export default [
 
   {
     url: '/logout',
-    type: 'post',
+    type: 'get',
     response: _ => {
       return {
         code: 20000,
