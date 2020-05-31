@@ -1,20 +1,11 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">Welcome: {{ name }}</div>
+    <div class="dashboard-text">Welcome to bamboo background management system.</div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
-export default {
-  name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
-  }
-}
 </script>
 
 <style lang="scss" scoped>
