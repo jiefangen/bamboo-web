@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Bamboo Admin Web',
+  title: 'Bamboo Admin',
 
   /**
    * @type {boolean} true | false
