@@ -14,7 +14,6 @@ const state = getDefaultState()
 const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
-    sessionStorage.removeItem('username')
   },
   SET_TOKEN: (state, token) => {
     state.token = token
@@ -33,7 +32,6 @@ const actions = {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
-        sessionStorage.setItem(`username`, userInfo.username)
         setToken(data.token) // 返回的token存入Cookies中
         resolve()
       }).catch(error => {
