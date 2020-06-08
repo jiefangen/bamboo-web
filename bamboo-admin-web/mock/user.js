@@ -24,7 +24,7 @@ const users = {
 }
 
 export default [
-  // user login
+  // system login
   {
     url: '/login',
     type: 'post',
@@ -48,7 +48,7 @@ export default [
   },
 
   {
-    url: '/system/user/info',
+    url: '/system/system/info',
     type: 'get',
     response: config => {
       const username = users[username]

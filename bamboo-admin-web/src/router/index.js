@@ -56,35 +56,22 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/system',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/system/user',
+    name: '系统管理',
+    meta: { title: '系统管理', icon: 'system' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'user',
+        name: '用户管理',
+        component: () => import('@/views/system/user/index'),
+        meta: { title: '用户管理', icon: 'peoples' }
       },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/nested/menu1/index'),
         meta: { title: 'Form', icon: 'form' }
       }
     ]
@@ -148,7 +135,6 @@ export const constantRoutes = [
     ]
   },
 
-  // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
@@ -160,7 +146,6 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router

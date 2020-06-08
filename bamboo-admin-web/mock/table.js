@@ -13,7 +13,7 @@ const data = Mock.mock({
 
 export default [
   {
-    url: '/bamboo-admin-web/table/list',
+    url: '/bamboo-admin-web/system/list',
     type: 'get',
     response: config => {
       const items = data.items
