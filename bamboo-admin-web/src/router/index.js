@@ -73,6 +73,12 @@ export const constantRoutes = [
         name: '角色管理',
         component: () => import('@/views/system/role/index'),
         meta: { title: '角色管理', icon: 'role' }
+      },
+      {
+        path: 'menu',
+        name: '菜单管理',
+        component: () => import('@/views/system/menu/index'),
+        meta: { title: '菜单管理', icon: 'menu' }
       }
     ]
   },
