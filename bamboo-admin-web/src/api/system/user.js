@@ -8,11 +8,10 @@ export function add(data) {
   })
 }
 
-export function del(ids) {
+export function del(username) {
   return request({
-    url: 'system/user/del',
-    method: 'delete',
-    data: ids
+    url: 'system/user/del/' + username,
+    method: 'delete'
   })
 }
 
@@ -26,7 +25,7 @@ export function edit(data) {
 
 export function updatePass(data) {
   return request({
-    url: 'system/user/updatePass',
+    url: 'system/user/updatePassword',
     method: 'post',
     data
   })
@@ -34,9 +33,9 @@ export function updatePass(data) {
 
 export function getList(data) {
   return request({
-    // url: 'system/user/list' + '?pageNo=' + data.pageNo + '&pageSize=' + data.pageSize,
-    url: 'system/user/list?pageNo=1&pageSize=10',
-    method: 'get'
+    url: 'system/user/page',
+    method: 'post',
+    data
   })
 }
 
